@@ -1,0 +1,61 @@
+version: "2"
+linters:
+  default: all
+  disable:
+    - exhaustruct
+    - exhaustruct_v5
+    - godox
+    - paralleltest
+    - varnamelen
+    - wrapcheck
+    - wsl
+    - gomodguard
+  settings:
+    ireturn:
+      allow:
+        - anon
+        - error
+        - empty
+        - stdlib
+        - generic
+    gomoddirectives:
+      replace-local: true
+    mnd:
+      ignored-numbers: ["2", "3", "90", "180", "360"]
+    depguard:
+      rules:
+        main:
+          allow:
+            - $gostd
+            - github.com
+    lll:
+      line-length: 140
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gci:
+      sections:
+        - Standard
+        - Default
+        - Prefix(github.com/bavix)
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
